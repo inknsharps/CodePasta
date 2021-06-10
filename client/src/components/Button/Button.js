@@ -1,9 +1,13 @@
 import React from "react";
 
-const Button = () => {
+const Button = ({ buttonContent }) => {
 	return (
-		<button className="Button"></button>
+		<button className="Button">{ buttonContent }</button>
 	)
 };
+
+Button.defaultProps = {
+	buttonContent: "Button"
+}
 
 export default Button;
