@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import SnippetContainer from "./components/Snippet/SnippetContainer/SnippetContainer";
 import ModalContainer from "./components/Modal/ModalContainer/ModalContainer";
 import Button from "./components/Button/Button";
+import SnippetForm from "./components/Snippet/SnippetForm/SnippetForm";
 
 function App() {
 	const [ showModal, setShowModal ] = useState(false);
@@ -21,6 +22,7 @@ function App() {
 			<Navbar />
 			<h1>CodePasta</h1>
 			<SnippetContainer />
+			<SnippetForm />
 			<Button buttonContent="Show Modal" buttonCallback={ displayModal } />
 			<ModalContainer show={ showModal } closeModal={ closeModal } />
         </div>
