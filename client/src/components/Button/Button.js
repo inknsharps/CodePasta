@@ -3,7 +3,7 @@ import "./Button.css";
 
 const Button = ({ buttonContent, buttonCallback }) => {
 	return (
-		<button className="Button" onClick={buttonCallback}>{ buttonContent }</button>
+		<button className="Button" onClick={ buttonCallback }>{ buttonContent }</button>
 	)
 };
 

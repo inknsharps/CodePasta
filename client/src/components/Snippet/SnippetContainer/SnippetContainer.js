@@ -17,7 +17,7 @@ const SnippetContainer = () => {
 		return snippetsArray.map(snippet => {
 			return (
 				<SnippetCard 
-					key={snippet._id}
+					key={ snippet._id }
 					snippetTitle={ snippet.snippetTitle }
 					snippetContent={ snippet.snippetContent }
 				/>
@@ -28,7 +28,7 @@ const SnippetContainer = () => {
 	return (
 		<div className="SnippetContainer"> 
 			<h2>Snippet Container</h2>
-			{generateSnippetCards(currentSnippets)}
+			{ generateSnippetCards(currentSnippets) }
 		</div>
 	)
 };
