@@ -1,12 +1,14 @@
 import React from "react";
 import Button from "../../Button/Button";
+import "./SnippetCard.css";
 
 const SnippetCard = ({ snippetTitle, snippetContent }) => {
 	return (
 		<div className="SnippetCard"> 
 			<h2>{ snippetTitle }</h2>
 			<p>{ snippetContent }</p>
-			<Button />
+			<Button buttonContent="Update"/>
+			<Button buttonContent="Delete"/>
 		</div>
 	)
 };
