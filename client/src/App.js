@@ -4,27 +4,18 @@ import Navbar from "./components/Navbar/Navbar";
 import SnippetContainer from "./components/Snippet/SnippetContainer/SnippetContainer";
 import ModalContainer from "./components/Modal/ModalContainer/ModalContainer";
 import Button from "./components/Button/Button";
-import SnippetForm from "./components/Snippet/SnippetForm/SnippetForm";
+import useToggle from "./hooks/useToggle";
 
 function App() {
-	const [ showModal, setShowModal ] = useState(false);
-
-	const displayModal = () => {
-		setShowModal(true);
-	};
-
-	const closeModal = () => {
-		setShowModal(false);
-	};
+	const [ showModal, setShowModal ] = useToggle(false);
 
     return (
         <div className="App">
 			<Navbar />
 			<h1>CodePasta</h1>
 			<SnippetContainer />
-			<SnippetForm />
-			<Button buttonContent="Show Modal" buttonCallback={ displayModal } />
-			<ModalContainer show={ showModal } closeModal={ closeModal } />
+			<Button buttonContent="Show Modal" buttonCallback={ setShowModal } />
+			<ModalContainer show={ showModal } closeModal={ setShowModal } />
         </div>
     );
 };
