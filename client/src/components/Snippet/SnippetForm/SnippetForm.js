@@ -8,12 +8,11 @@ const SnippetForm = () => {
     
 	return (
 		<div className="SnippetForm">
-            <h2>Snippet Form</h2>
-            <form>
+            <form className="flex flex-col items-center">
                 <label>Snippet Name</label>
-                <input placeholder="Foo" value={ inputName } onChange={ setInputName }></input>
+                <input className="w-1/3 text-black" placeholder="Foo" value={ inputName } onChange={ setInputName }></input>
                 <label>Snippet Content</label>
-                <input placeholder="console.log('bar')" value={ inputContent } onChange={ setInputContent }></input>
+                <input className="w-1/3 text-black" placeholder="console.log('bar')" value={ inputContent } onChange={ setInputContent }></input>
             </form>
         </div>
 	)

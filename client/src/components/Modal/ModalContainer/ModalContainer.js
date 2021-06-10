@@ -13,8 +13,7 @@ const ModalContainer = ({ show, closeModal }) => {
 	}
 
 	return (
-		<div className="ModalContainer">
-			<h3>Modal Container</h3>
+		<div className="ModalContainer fixed flex flex-col items-center justify-center inset-0 bg-pink-200 bg-opacity-50">
 			<ModalHeader />
 			<ModalBody />
 			<ModalFooter closeModal={ closeModal } />

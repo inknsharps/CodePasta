@@ -3,8 +3,8 @@ import "./ModalHeader.css";
 
 const ModalHeader = () => {
 	return (
-		<div className="ModalHeader">
-			<h4>Modal Header</h4>
+		<div className="ModalHeader w-1/2 rounded-t-xl p-2 bg-pink-500 text-2xl">
+			<h4>New Snippet</h4>
 		</div>
 	)
 };
