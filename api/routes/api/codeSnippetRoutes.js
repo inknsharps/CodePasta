@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const CodeSnippet = require("../../models/CodeSnippet");
+const cors = require("cors");
 
-router.get("/", async (req, res) => {
+router.get("/", cors(), async (req, res) => {
 	try {
 		const codeSnippets = await CodeSnippet.find({});
 		res.send(codeSnippets);
@@ -10,7 +11,7 @@ router.get("/", async (req, res) => {
 	}
 });
 
-router.post("/", async (req, res) => {
+router.post("/", cors(), async (req, res) => {
 	try {
 		const newCodeSnippet = await CodeSnippet.create(req.body);
 		res.json(newCodeSnippet);
@@ -19,7 +20,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", cors(), async (req, res) => {
 	try {
 		const updatedCodeSnippet = await CodeSnippet.updateOne(
 			{ _id: req.params.id },
@@ -31,7 +32,7 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", cors(), async (req, res) => {
 	try {
 		const deletedCodeSnippet = await CodeSnippet.deleteOne(
 			{ _id: req.params.id }

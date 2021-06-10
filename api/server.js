@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:false }));
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(require("./routes"));
-app.use(cors);
+app.use(cors());
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codepasta", { useNewUrlParser: true });
 
