@@ -26,7 +26,7 @@ const SnippetContainer = () => {
 	};
 
 	return (
-		<div className="SnippetContainer grid grid-cols-1 xl:grid-cols-3 py-10"> 
+		<div className="SnippetContainer grid grid-cols-1 xl:grid-cols-3 gap-10 py-10"> 
 			{ generateSnippetCards(currentSnippets) }
 		</div>
 	)
