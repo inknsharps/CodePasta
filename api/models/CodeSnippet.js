@@ -12,6 +12,6 @@ const CodeSnippetSchema = new Schema({
 	}
 });
 
-const CodeSnippet = mongoose.model("CodeSnippet". CodeSnippetSchema);
+const CodeSnippet = mongoose.model("CodeSnippet", CodeSnippetSchema);
 
-module.exports = Workout;
+module.exports = CodeSnippet;
