@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SnippetCard from "../SnippetCard/SnippetCard";
 import "./SnippetContainer.css";
+
 // Utils
-import getCodeSnippets from "../../../utils/API";
+import { getCodeSnippets } from "../../../utils/API";
 
 const SnippetContainer = () => {
 	const [ currentSnippets, setCurrentSnippets ] = useState([]);
@@ -26,7 +27,7 @@ const SnippetContainer = () => {
 	};
 
 	return (
-		<div className="SnippetContainer grid grid-cols-1 xl:grid-cols-3 gap-10 py-10"> 
+		<div className="SnippetContainer grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 py-10"> 
 			{ generateSnippetCards(currentSnippets) }
 		</div>
 	)
