@@ -43,10 +43,14 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 		document.location.reload();
 	};
 
-	// const handleCopy = event => {
-	// 	event.stopPropagation();
-	// 	const snippetContent = event.target.parentElement.parentElement.children[1].firstChild.firstChild.value;
-	// };
+	const handleCopy = async event => {
+		try {
+			event.stopPropagation();
+			navigator.clipboard.writeText(originalSnippet);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div className="SnippetCard flex flex-col justify-between mx-12 lg:mx-16 xl:mx-32 my-3 rounded-xl bg-pink-400 bg-opacity-50"> 
@@ -58,10 +62,14 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 				</pre>
 			</div>
 			<div className="flex flex-row justify-evenly p-2 rounded-b-xl bg-pink-700 bg-opacity-50">
+				{ editMode
+					? null
+					: <Button buttonContent="📋" buttonCallback={ handleCopy } />
+				}
 				<Button buttonContent={ editMode ? "Submit" : "Update"} buttonCallback={ editMode ? handleUpdate : toggleEditMode }/>
 				{ editMode 
 					? <Button buttonContent="Cancel" buttonCallback={ handleCancel } />
-					: <Button buttonContent="Delete" buttonCallback={ handleDelete } /> 	
+					: <Button buttonContent="Delete" buttonCallback={ handleDelete } />  
 				}
 			</div>
 		</div>
