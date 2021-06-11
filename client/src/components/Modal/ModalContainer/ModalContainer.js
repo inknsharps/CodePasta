@@ -10,13 +10,18 @@ import "./ModalContainer.css";
 const ModalContainer = ({ show, closeModal }) => {
 	if (!show) {
 		return null;
-	}
+	};
+
+	// Next steps- we need to change the button that this function is being passed into to actually record on an event, rather than a click.
+	const handleSubmit = (event) => {
+		console.log("handleSubmit's event is:", event);
+	};
 
 	return (
 		<div className="ModalContainer backdrop-filter backdrop-blur fixed flex flex-col items-center justify-center inset-0 bg-pink-200 bg-opacity-50">
 			<ModalHeader />
 			<ModalBody />
-			<ModalFooter closeModal={ closeModal } />
+			<ModalFooter closeModal={ closeModal } handleSubmit={ handleSubmit } />
 		</div>
 	)
 };
