@@ -3,15 +3,21 @@ import { useState } from "react";
 const useToggle = (initialState = true) => {
     const [ toggleState, setToggleState ] = useState(initialState);
 
-    const handleToggle = () => {
+    const handleToggle = event => {
+		event.preventDefault();
+		event.stopPropagation();
         setToggleState(!toggleState);
     };
 
-	const handleToggleTrue = () => {
+	const handleToggleTrue = event => {
+		event.preventDefault();
+		event.stopPropagation();
 		setToggleState(true);
 	};
 
-	const handleToggleFalse = () => {
+	const handleToggleFalse = event => {
+		event.preventDefault();
+		event.stopPropagation();
 		setToggleState(false);
 	};
 
