@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../Button/Button";
 import "./SnippetCard.css";
 
@@ -6,8 +6,16 @@ import { updateCodeSnippet, deleteCodeSnippet } from "../../../utils/API";
 
 
 // Storing data ids here is probably not the greatest idea, consider another alternative such as state.
-const SnippetCard = ({ snippetTitle, snippetContent, dataID }) => {
+const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 	const [ editMode, setEditMode ] = useState(false);
+	const [ originalSnippet, setOriginalSnippet ] = useState("");
+	const [ snippetID, setSnippetID ] = useState(dataID);
+	
+	useEffect(() => {
+		const snippet = document.querySelector(`textarea[name="SnippetCard-textarea-${ index }`);
+		setOriginalSnippet(snippet.value);
+		setSnippetID(dataID);
+	}, [dataID, index]);
 	
 	const toggleEditMode = () => {
 		setEditMode(!editMode);
@@ -16,33 +24,45 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID }) => {
 	// These are the worst DOM traversals I've ever seen holy shit
 	const handleUpdate = event => {
 		event.stopPropagation();
-		console.log(event);
-		const snippetID = event.target.parentElement.dataset.id;
 		const snippetTitle = event.target.parentElement.parentElement.children[0].textContent;
 		const snippetContent = event.target.parentElement.parentElement.children[1].firstChild.firstChild.value;
 		updateCodeSnippet(snippetID, snippetTitle, snippetContent);
 		toggleEditMode();
 		document.location.reload();
 	};
+
+	const handleCancel = event => {
+		event.stopPropagation();
+		event.target.parentElement.parentElement.children[1].firstChild.firstChild.value = originalSnippet;
+		setEditMode(false);
+	};
 	
 	const handleDelete = event => {
 		event.stopPropagation();
-		const snippetID = event.target.parentElement.dataset.id;
 		deleteCodeSnippet(snippetID);
 		document.location.reload();
 	};
+
+	// const handleCopy = event => {
+	// 	event.stopPropagation();
+	// 	const snippetContent = event.target.parentElement.parentElement.children[1].firstChild.firstChild.value;
+	// };
 
 	return (
 		<div className="SnippetCard flex flex-col justify-between mx-12 lg:mx-16 xl:mx-32 my-3 rounded-xl bg-pink-400 bg-opacity-50"> 
 			<h3 className="rounded-t-xl p-2 bg-pink-600 bg-opacity-50 text-2xl">{ snippetTitle }</h3>
 			<div className="p-5">
-				<pre className="text-left whitespace-pre-wrap">
-					{ editMode ? <textarea className="text-black" defaultValue={ snippetContent }></textarea> : <code>{ snippetContent }</code> }
+				<pre className="flex flex-col justify-items-stretch text-left whitespace-pre-wrap">
+					<label name={`SnippetCard-textarea-${ index }`}></label>
+					<textarea className="resize-none box-content bg-transparent border-box focus:outline-none font-mono" name={`SnippetCard-textarea-${ index }`} defaultValue={ snippetContent } readOnly={ !editMode } rows="12" cols="40"></textarea> 
 				</pre>
 			</div>
-			<div className="flex flex-row justify-evenly p-2 rounded-b-xl bg-pink-700 bg-opacity-50" data-id={ dataID }>
+			<div className="flex flex-row justify-evenly p-2 rounded-b-xl bg-pink-700 bg-opacity-50">
 				<Button buttonContent={ editMode ? "Submit" : "Update"} buttonCallback={ editMode ? handleUpdate : toggleEditMode }/>
-				<Button buttonContent="Delete" buttonCallback={ handleDelete }/>
+				{ editMode 
+					? <Button buttonContent="Cancel" buttonCallback={ handleCancel } />
+					: <Button buttonContent="Delete" buttonCallback={ handleDelete } /> 	
+				}
 			</div>
 		</div>
 	)

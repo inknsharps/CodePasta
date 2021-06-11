@@ -15,10 +15,11 @@ const SnippetContainer = () => {
 	}, []);
 
 	const generateSnippetCards = snippetsArray => {
-		return snippetsArray.map(snippet => {
+		return snippetsArray.map((snippet, index) => {
 			return (
 				<SnippetCard 
 					key={ snippet._id }
+					index={ index }
 					dataID={ snippet._id }
 					snippetTitle={ snippet.snippetTitle }
 					snippetContent={ snippet.snippetContent }
@@ -28,7 +29,7 @@ const SnippetContainer = () => {
 	};
 
 	return (
-		<div className="SnippetContainer grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 py-10"> 
+		<div className="SnippetContainer grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-10 py-10 min-h-screen lg:min-h-full"> 
 			{ generateSnippetCards(currentSnippets) }
 		</div>
 	)

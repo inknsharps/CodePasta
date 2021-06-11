@@ -1,0 +1,8 @@
+textarea::-webkit-scrollbar {
+    background-color: gray;
+    border-radius: 0 0 10px 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: pink;
+}

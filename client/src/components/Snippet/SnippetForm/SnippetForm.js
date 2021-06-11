@@ -9,7 +9,6 @@ const SnippetForm = () => {
 	const [ nameWarning, setNameWarning ] = useState(false);
 	const [ codeWarning, setCodeWarning ] = useState(false);
 
-
 	const handleSubmit = event => {
 		event.preventDefault();
 		
@@ -17,11 +16,11 @@ const SnippetForm = () => {
 		setNameWarning(false);
 		setCodeWarning(false);
 
-		// The submit event shoves both inputs into an array on the target attribute.
+		// The submit event shoves both inputs into an array on the event.target attribute.
 		const nameValue = event.target[0].value;
 		const codeValue = event.target[1].value;
 
-		// Validation for the inputs. If either aren't inputted, then we set the warning states to true and render warning markup, and stop the POST request from being made.
+		// Validation for the inputs. If either aren't inputted, then we set the respective warning states to true and render warning markup, and stop the POST request from being made.
 		if (nameValue === ""){
 			setNameWarning(true);
 		};
