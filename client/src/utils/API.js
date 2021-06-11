@@ -24,9 +24,32 @@ export const postCodeSnippet = async (snippetTitle, snippetContent) => {
 	}
 };
 
+export const updateCodeSnippet = async (snippetID, snippetTitle, snippetContent) => {
+	try {
+		const updatedCodeSnippet = await axios.put(baseURL + snippetID, {
+			snippetTitle: snippetTitle,
+			snippetContent: snippetContent
+		});
+		console.log("Successfully PUTed:", updatedCodeSnippet);
+	} catch (error) {
+		console.log("Error in PUT request to API!");
+	}
+};
+
+export const deleteCodeSnippet = async snippetID => {
+	try {
+		const deletedCodeSnippet = await axios.delete(baseURL + snippetID);
+		console.log("Successfully DELETed:", deletedCodeSnippet);
+	} catch (error) {
+		console.log("Error in DELETE request to API!");
+	}
+};
+
 const API = {
-	getCodeSnippets: getCodeSnippets,
-	postCodeSnippet: postCodeSnippet
+	getCodeSnippets,
+	postCodeSnippet,
+	updateCodeSnippet,
+	deleteCodeSnippet
 };
 
 export default API;
