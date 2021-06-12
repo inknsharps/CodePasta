@@ -4,25 +4,18 @@ import "./SnippetCard.css";
 
 import { updateCodeSnippet, deleteCodeSnippet } from "../../../utils/API";
 
-
-// Storing data ids here is probably not the greatest idea, consider another alternative such as state.
-const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
+const SnippetCard = ({ snippetTitle, snippetContent, dataID, index, setReload }) => {
 	const [ editMode, setEditMode ] = useState(false);
 	const [ originalSnippet, setOriginalSnippet ] = useState("");
 	const [ updatedSnippet, setUpdatedSnippet ] = useState("");
 	const [ snippetID, setSnippetID ] = useState("");
 	const [ snippetInput, setSnippetInput ] = useState("");
 
-	// Okay, the thought process is:
-	// On load, store the original snippet values through state (we have to restore it when cancel changes is hit).
-	// When a snippet is successfully updated, set original snippet state to that new value.
-	// We need a way to track new values being inputted, since we're currently using DOM selectors (which is a no-no in React).
-
 	useEffect(() => {
 		setSnippetInput(snippetContent);
 		setOriginalSnippet(snippetContent);
 		setSnippetID(dataID);
-	}, [dataID, index, snippetContent]);
+	}, [dataID, snippetContent, updatedSnippet]);
 
 	useEffect(() => {
 		setUpdatedSnippet(snippetInput);
@@ -42,18 +35,20 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 		updateCodeSnippet(snippetID, snippetTitle, updatedSnippet);
 		setOriginalSnippet(updatedSnippet);
 		toggleEditMode();
+		setReload(prev => !prev);
 	};
 
 	const handleCancel = event => {
 		event.stopPropagation();
 		setSnippetInput(originalSnippet);
 		setEditMode(false);
+		setReload(prev => !prev);
 	};
 	
 	const handleDelete = event => {
 		event.stopPropagation();
 		deleteCodeSnippet(snippetID);
-		document.location.reload();
+		setReload(prev => !prev);
 	};
 
 	// This is async because the writeText() method returns a promise, and it can break because of user permissions.
@@ -71,10 +66,10 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 			<h3 className="rounded-t-xl p-2 bg-pink-600 bg-opacity-50 text-2xl">{ snippetTitle }</h3>
 			<div className="p-5">
 				<pre className="flex flex-col justify-items-stretch text-left whitespace-pre-wrap">
-					<label name={`SnippetCard-textarea-${ index }`}></label>
+					<label name={ `SnippetCard-textarea-${ index }` }></label>
 					<textarea 
 						className="resize-none box-content bg-transparent border-box focus:outline-none font-mono" 
-						name={`SnippetCard-textarea-${ index }`} 
+						name={ `SnippetCard-textarea-${ index }` } 
 						value={ snippetInput } 
 						readOnly={ !editMode }
 						onChange={ editMode ? handleInput : null } 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SnippetCard from "../SnippetCard/SnippetCard";
 import "./SnippetContainer.css";
 
@@ -7,12 +7,15 @@ import { getCodeSnippets } from "../../../utils/API";
 
 const SnippetContainer = () => {
 	const [ currentSnippets, setCurrentSnippets ] = useState([]);
+	const [ reload, setReload ] = useState(false);
+
+	const memoGetCodeSnippets = useCallback(getCodeSnippets, [reload]);
 
 	useEffect(() => {
-		getCodeSnippets()
+		memoGetCodeSnippets()
 			.then(({ data }) => setCurrentSnippets(data))
 			.catch(error => new Error(error));
-	}, []);
+	}, [memoGetCodeSnippets, reload]);
 
 	const generateSnippetCards = snippetsArray => {
 		return snippetsArray.map((snippet, index) => {
@@ -23,6 +26,7 @@ const SnippetContainer = () => {
 					dataID={ snippet._id }
 					snippetTitle={ snippet.snippetTitle }
 					snippetContent={ snippet.snippetContent }
+					setReload={setReload}
 				/>
 			)
 		})
