@@ -20,7 +20,7 @@ const SnippetContainer = ({ reload, setReload, memoGetCodeSnippets}) => {
 					dataID={ snippet._id }
 					snippetTitle={ snippet.snippetTitle }
 					snippetContent={ snippet.snippetContent }
-					setReload={setReload}
+					setReload={ setReload }
 				/>
 			)
 		})

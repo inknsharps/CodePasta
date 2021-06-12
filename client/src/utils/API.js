@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001/api/codesnippets";
+const baseURL = "http://localhost:3001/api/codesnippets/";
 
 export const getCodeSnippets = async () => {
 	try {
