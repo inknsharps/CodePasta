@@ -1,15 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SnippetCard from "../SnippetCard/SnippetCard";
 import "./SnippetContainer.css";
 
-// Utils
-import { getCodeSnippets } from "../../../utils/API";
-
-const SnippetContainer = () => {
+const SnippetContainer = ({ reload, setReload, memoGetCodeSnippets}) => {
 	const [ currentSnippets, setCurrentSnippets ] = useState([]);
-	const [ reload, setReload ] = useState(false);
-
-	const memoGetCodeSnippets = useCallback(getCodeSnippets, [reload]);
 
 	useEffect(() => {
 		memoGetCodeSnippets()
