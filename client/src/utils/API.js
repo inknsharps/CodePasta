@@ -1,7 +1,6 @@
 import axios from "axios";
-// Currently set to our backend which lives on a different localhost instance. Change this for production build.
-// const baseURL = "http://localhost:3001/api/codesnippets/"
-const baseURL = "/api/codesnippets"
+
+const baseURL = "http://localhost:3001/api/codesnippets";
 
 export const getCodeSnippets = async () => {
 	try {
