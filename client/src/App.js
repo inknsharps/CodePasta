@@ -14,13 +14,13 @@ function App() {
 
     return (
         <div className="App min-h-full min-w-full lg:min-h-screen lg:min-w-screen text-white">
-			<Navbar setShowModal={ setShowModal }/>
+			<Navbar setShowModal={ setShowModal } />
 			<section className="divide-y divide-solid divide-pink-200">
 				<h1 className="rounded-full bg-pink-700 bg-opacity-50 p-5 mx-32 my-10 text-4xl">
 					Code Snippets that you can save and reference for any project.
 				</h1>
-				<SnippetContainer reload={reload} setReload={ setReload } memoGetCodeSnippets={ memoGetCodeSnippets }/>
-				<ModalContainer show={ showModal } closeModal={ setShowModal } />
+				<SnippetContainer reload={reload} setReload={ setReload } memoGetCodeSnippets={ memoGetCodeSnippets } />
+				<ModalContainer show={ showModal } setShowModal={ setShowModal } setReload={ setReload } />
 			</section>
 			<Footer />
         </div>
