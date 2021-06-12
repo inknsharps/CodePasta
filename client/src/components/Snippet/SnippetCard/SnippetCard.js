@@ -15,7 +15,7 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index, setReload })
 		setSnippetInput(snippetContent);
 		setOriginalSnippet(snippetContent);
 		setSnippetID(dataID);
-	}, [dataID, snippetContent, updatedSnippet]);
+	}, [dataID, snippetContent]);
 
 	useEffect(() => {
 		setUpdatedSnippet(snippetInput);
@@ -31,6 +31,7 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index, setReload })
 	
 	const handleUpdate = event => {
 		event.stopPropagation();
+		console.log(snippetInput);
 		setUpdatedSnippet(snippetInput);
 		updateCodeSnippet(snippetID, snippetTitle, updatedSnippet);
 		setOriginalSnippet(updatedSnippet);

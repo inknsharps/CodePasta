@@ -40,10 +40,10 @@ const SnippetForm = ({ setShowModal, setReload }) => {
 	return (
 		<div className="SnippetForm">
             <form className="flex flex-col items-center" onSubmit={ handleSubmit }>
-                <label className="pt-2">Snippet Name { nameWarning ? <span className="text-yellow-300"> Please input a name!</span> : null }</label>
-                <input className="w-1/3 text-black text-center" type="text" placeholder="// Function Foo" required={ true } value={ inputName } onChange={ setInputName }></input>
-                <label className="pt-2">Snippet Content { codeWarning ? <span className="text-yellow-300"> Please input code!</span> : null }</label>
-                <textarea className="w-1/3 text-black text-center" type="text" placeholder="foo => console.log('bar')" required={ true } value={ inputContent } onChange={ setInputContent }></textarea>
+                <label className="pt-2 mb-2">Snippet Name { nameWarning ? <span className="text-yellow-300"> Please input a name!</span> : null }</label>
+                <input className="w-1/3 box-content bg-pink-800 border border-solid border-white rounded-lg ring-1 ring-white ring-offset-2 focus:outline-none font-mono" type="text" placeholder="// Function Foo" required={ true } value={ inputName } onChange={ setInputName }></input>
+                <label className="pt-2 mb-2">Snippet Content { codeWarning ? <span className="text-yellow-300"> Please input code!</span> : null }</label>
+                <textarea className="w-1/3 resize-none box-content bg-transparent border border-solid border-white rounded-lg ring-1 ring-white ring-offset-2 focus:outline-none font-mono" type="text" placeholder="foo => console.log('bar')" rows={12} columns={40} required={ true } value={ inputContent } onChange={ setInputContent }></textarea>
 				<input className="transform transition duration-500 mt-6 px-5 rounded-full bg-pink-300 hover:bg-pink-500 hover:bg-opacity-50 ring ring-transparent hover:ring hover:ring-white bg-opacity-50" type="submit" value="Submit!"></input>
             </form>
         </div>

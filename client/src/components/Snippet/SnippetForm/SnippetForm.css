@@ -1,0 +1,11 @@
+input[type='text']::placeholder {
+	text-align: center;
+	color: seashell;
+	opacity: 65%;
+}
+
+textarea::placeholder {
+	text-align: center;
+	color: seashell;
+	opacity: 65%;
+}
