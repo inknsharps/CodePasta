@@ -14,7 +14,7 @@ const ModalContainer = ({ show, closeModal }) => {
 	};
 
 	return ReactDOM.createPortal(
-		<div className="ModalContainer backdrop-filter backdrop-blur backdrop-saturate-50 fixed flex flex-col items-center justify-center inset-0 bg-pink-200 bg-opacity-50">
+		<div className="ModalContainer backdrop-filter backdrop-blur backdrop-saturate-50 fixed flex flex-col items-center justify-center inset-0 bg-pink-200 bg-opacity-50 text-white">
 			<ModalHeader closeModal={ closeModal } />
 			<ModalBody />
 			<ModalFooter />
