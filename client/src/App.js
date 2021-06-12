@@ -5,9 +5,12 @@ import SnippetContainer from "./components/Snippet/SnippetContainer/SnippetConta
 import ModalContainer from "./components/Modal/ModalContainer/ModalContainer";
 import useToggle from "./hooks/useToggle";
 import Footer from "./components/Footer/Footer";
+import useReload from "./hooks/useReload";
+import { getCodeSnippets } from "./utils/API";
 
 function App() {
 	const [ showModal, setShowModal ] = useToggle(false);
+	const [ reload, setReload, memoGetCodeSnippets ] = useReload(getCodeSnippets, false);
 
     return (
         <div className="App min-h-full min-w-full lg:min-h-screen lg:min-w-screen text-white">
@@ -16,8 +19,8 @@ function App() {
 				<h1 className="rounded-full bg-pink-700 bg-opacity-50 p-5 mx-32 my-10 text-4xl">
 					Code Snippets that you can save and reference for any project.
 				</h1>
-				<SnippetContainer />
-				<ModalContainer show={ showModal } closeModal={ setShowModal }/>
+				<SnippetContainer reload={reload} setReload={ setReload } memoGetCodeSnippets={ memoGetCodeSnippets }/>
+				<ModalContainer show={ showModal } closeModal={ setShowModal } />
 			</section>
 			<Footer />
         </div>
