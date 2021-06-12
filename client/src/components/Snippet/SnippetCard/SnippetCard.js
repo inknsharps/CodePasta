@@ -9,31 +9,44 @@ import { updateCodeSnippet, deleteCodeSnippet } from "../../../utils/API";
 const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 	const [ editMode, setEditMode ] = useState(false);
 	const [ originalSnippet, setOriginalSnippet ] = useState("");
-	const [ snippetID, setSnippetID ] = useState(dataID);
-	
+	const [ updatedSnippet, setUpdatedSnippet ] = useState("");
+	const [ snippetID, setSnippetID ] = useState("");
+	const [ snippetInput, setSnippetInput ] = useState("");
+
+	// Okay, the thought process is:
+	// On load, store the original snippet values through state (we have to restore it when cancel changes is hit).
+	// When a snippet is successfully updated, set original snippet state to that new value.
+	// We need a way to track new values being inputted, since we're currently using DOM selectors (which is a no-no in React).
+
 	useEffect(() => {
-		const snippet = document.querySelector(`textarea[name="SnippetCard-textarea-${ index }`);
-		setOriginalSnippet(snippet.value);
+		setSnippetInput(snippetContent);
+		setOriginalSnippet(snippetContent);
 		setSnippetID(dataID);
-	}, [dataID, index]);
+	}, [dataID, index, snippetContent]);
+
+	useEffect(() => {
+		setUpdatedSnippet(snippetInput);
+	}, [snippetInput]);
 	
 	const toggleEditMode = () => {
 		setEditMode(!editMode);
 	};
+
+	const handleInput = event => {
+		setSnippetInput(event.target.value);
+	};
 	
-	// These are the worst DOM traversals I've ever seen holy shit
 	const handleUpdate = event => {
 		event.stopPropagation();
-		const snippetTitle = event.target.parentElement.parentElement.children[0].textContent;
-		const snippetContent = event.target.parentElement.parentElement.children[1].firstChild.firstChild.value;
-		updateCodeSnippet(snippetID, snippetTitle, snippetContent);
+		setUpdatedSnippet(snippetInput);
+		updateCodeSnippet(snippetID, snippetTitle, updatedSnippet);
+		setOriginalSnippet(updatedSnippet);
 		toggleEditMode();
-		document.location.reload();
 	};
 
 	const handleCancel = event => {
 		event.stopPropagation();
-		event.target.parentElement.parentElement.children[1].firstChild.firstChild.value = originalSnippet;
+		setSnippetInput(originalSnippet);
 		setEditMode(false);
 	};
 	
@@ -43,6 +56,7 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 		document.location.reload();
 	};
 
+	// This is async because the writeText() method returns a promise, and it can break because of user permissions.
 	const handleCopy = async event => {
 		try {
 			event.stopPropagation();
@@ -53,12 +67,20 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index }) => {
 	};
 
 	return (
-		<div className="SnippetCard flex flex-col justify-between mx-12 lg:mx-16 xl:mx-32 my-3 rounded-xl bg-pink-400 bg-opacity-50"> 
+		<div className="SnippetCard flex flex-col justify-between mx-12 lg:mx-16 xl:mx-32 my-3 rounded-xl bg-pink-400 bg-opacity-50 font-light"> 
 			<h3 className="rounded-t-xl p-2 bg-pink-600 bg-opacity-50 text-2xl">{ snippetTitle }</h3>
 			<div className="p-5">
 				<pre className="flex flex-col justify-items-stretch text-left whitespace-pre-wrap">
 					<label name={`SnippetCard-textarea-${ index }`}></label>
-					<textarea className="resize-none box-content bg-transparent border-box focus:outline-none font-mono" name={`SnippetCard-textarea-${ index }`} defaultValue={ snippetContent } readOnly={ !editMode } rows="12" cols="40"></textarea> 
+					<textarea 
+						className="resize-none box-content bg-transparent border-box focus:outline-none font-mono" 
+						name={`SnippetCard-textarea-${ index }`} 
+						value={ snippetInput } 
+						readOnly={ !editMode }
+						onChange={ editMode ? handleInput : null } 
+						rows="12" 
+						cols="40">
+					</textarea> 
 				</pre>
 			</div>
 			<div className="flex flex-row justify-evenly p-2 rounded-b-xl bg-pink-700 bg-opacity-50">
