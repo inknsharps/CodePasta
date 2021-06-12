@@ -8,15 +8,15 @@ import ModalBody from "../ModalBody/ModalBody";
 import ModalFooter from "../ModalFooter/ModalFooter";
 import "./ModalContainer.css";
 
-const ModalContainer = ({ show, closeModal }) => {
+const ModalContainer = ({ show, setShowModal, setReload }) => {
 	if (!show) {
 		return null;
 	};
 
 	return ReactDOM.createPortal(
 		<div className="ModalContainer backdrop-filter backdrop-blur backdrop-saturate-50 fixed flex flex-col items-center justify-center inset-0 bg-pink-200 bg-opacity-50 text-white">
-			<ModalHeader closeModal={ closeModal } />
-			<ModalBody />
+			<ModalHeader setShowModal={ setShowModal } />
+			<ModalBody setShowModal={ setShowModal } setReload={ setReload }/>
 			<ModalFooter />
 		</div>, 
 		document.getElementById("root")
