@@ -9,11 +9,11 @@ A deployed version can be viewed [here](https://pure-lake-84406.herokuapp.com/).
 
 ## Description
 
-CodePasta started life as an attempt to port an old code snippet CSS styling exercise using React components out of a combination needing to practice React patterns, and a dash of boredom. After realizing that using React was likely overkill for a fairly simple static application, I added create, read, write and delete functionality using MongoDB/No-SQL as the database paradigm, along with backend API routing using Express. This was also a good excuse to learn and try out [Tailwind CSS](https://tailwindcss.com/). Essentially at it's core, this app is basically a glorified to-do list.
+CodePasta started life as an attempt to port an old code snippet CSS styling exercise using React components out of a combination needing to practice React patterns, and a dash of boredom. After realizing that using React was likely overkill for a fairly simple static application, I added create, read, write and delete functionality using MongoDB/No-SQL as the database paradigm, along with backend API routing using Express. This was also a good excuse to learn and try out [Tailwind CSS](https://tailwindcss.com/). At its core, this app is basically a glorified to-do list.
 
 ## Installation
 
-To install and run this application locally, you can either run a development build, or create a production build.
+To install and run this application locally, you can either run a development build, or create a production build. The development build will run slower than the production since it will be using unminified Javascript files, and the entirety of the Tailwind CSS stylesheet.
 
 ### Development Build
 
