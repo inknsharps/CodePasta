@@ -1,4 +1,4 @@
-![GitHub top language](https://img.shields.io/github/languages/top/inknsharps/CodePasta)
+![GitHub top language](https://img.shields.io/github/languages/top/inknsharps/CodePasta) ![license](https://img.shields.io/github/license/inknsharps/CodePasta)
 
 # CodePasta - A Code Snippet Web Application
 
