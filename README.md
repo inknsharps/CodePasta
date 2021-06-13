@@ -5,6 +5,7 @@
 ![CodePastaHeaderImage](./img/header.jpg)
 
 A WIP, MERN stack ([MongoDB](https://www.mongodb.com/), [Express](http://expressjs.com/), [React](https://reactjs.org/) and [Node.js](https://nodejs.dev/)) code snippet CRUD application.
+A deployed version can be viewed [here](https://pure-lake-84406.herokuapp.com/).
 
 ## Description
 
