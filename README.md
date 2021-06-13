@@ -1,13 +1,14 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/inknsharps/CodePasta)
+
 # CodePasta - A Code Snippet Web Application
 
 ![CodePastaHeaderImage](./img/header.jpg)
 
-A WIP MERN stack ([MongoDB](https://www.mongodb.com/), [Express](http://expressjs.com/), [React](https://reactjs.org/) and [Node.js](https://nodejs.dev/)) code snippet CRUD application.
+A WIP, MERN stack ([MongoDB](https://www.mongodb.com/), [Express](http://expressjs.com/), [React](https://reactjs.org/) and [Node.js](https://nodejs.dev/)) code snippet CRUD application.
 
 ## Description
 
-CodePasta started life as an attempt to port an old code snippet CSS styling exercise using React components out of boredom. After realizing that this was likely overkill for a fairly simple static application, create, read, write and delete functionality was added using MongoDB/No-SQL as the database paradigm, along with backend API routing using Express. This was also a good excuse to learn and try out [Tailwind CSS](https://tailwindcss.com/). It's basically a glorified to-do list.
+CodePasta started life as an attempt to port an old code snippet CSS styling exercise using React components out of a combination needing to practice React patterns, and a dash of boredom. After realizing that using React was likely overkill for a fairly simple static application, I added create, read, write and delete functionality using MongoDB/No-SQL as the database paradigm, along with backend API routing using Express. This was also a good excuse to learn and try out [Tailwind CSS](https://tailwindcss.com/). Essentially at it's core, this app is basically a glorified to-do list.
 
 ## Installation
 
