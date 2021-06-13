@@ -63,20 +63,22 @@ const SnippetCard = ({ snippetTitle, snippetContent, dataID, index, setReload })
 	};
 
 	return (
-		<div className="SnippetCard flex flex-col justify-between mx-12 lg:mx-16 xl:mx-32 my-3 rounded-xl bg-pink-400 bg-opacity-50 font-light"> 
-			<h3 className="rounded-t-xl p-2 bg-pink-600 bg-opacity-50 text-2xl">{ snippetTitle }</h3>
+		<div className="SnippetCard flex flex-col justify-between mx-5 lg:mx-16 xl:mx-4 my-3 rounded-xl bg-pink-400 bg-opacity-50 font-light"> 
+			<h2 className="rounded-t-xl p-2 bg-pink-600 bg-opacity-50 text-2xl">{ snippetTitle }</h2>
 			<div className="p-5">
 				<pre className="flex flex-col justify-items-stretch text-left whitespace-pre-wrap">
-					<label name={ `SnippetCard-textarea-${ index }` }></label>
-					<textarea 
-						className="resize-none box-content bg-transparent border-box focus:outline-none font-mono" 
-						name={ `SnippetCard-textarea-${ index }` } 
-						value={ snippetInput } 
-						readOnly={ !editMode }
-						onChange={ editMode ? handleInput : null } 
-						rows="12" 
-						cols="40">
-					</textarea> 
+					<label htmlFor={ `SnippetCard-textarea-${ index }` }>
+						<textarea 
+							className="resize-none box-content bg-transparent border-box focus:outline-none font-mono" 
+							// name={ `SnippetCard-textarea-${ index }` } 
+							id={ `SnippetCard-textarea-${ index }` }
+							value={ snippetInput } 
+							readOnly={ !editMode }
+							onChange={ editMode ? handleInput : null } 
+							rows="12" 
+							cols="40">
+						</textarea> 
+					</label>
 				</pre>
 			</div>
 			<div className="flex flex-row justify-evenly p-2 rounded-b-xl bg-pink-700 bg-opacity-50">

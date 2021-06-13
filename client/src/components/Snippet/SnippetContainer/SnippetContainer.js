@@ -27,7 +27,7 @@ const SnippetContainer = ({ reload, setReload, memoGetCodeSnippets}) => {
 	};
 
 	return (
-		<div className="SnippetContainer grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-10 py-10 min-h-screen lg:min-h-full"> 
+		<div className="SnippetContainer grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-10 py-10 xl:mx-24 min-h-screen lg:min-h-full"> 
 			{ generateSnippetCards(currentSnippets) }
 		</div>
 	)
